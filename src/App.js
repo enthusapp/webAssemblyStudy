@@ -1,22 +1,17 @@
-/* eslint-disable no-console */
 import React from 'react';
-import { useWasm } from 'react-wasm';
 import logo from './logo.svg';
 import './App.css';
+import * as wasm from './wasm-hello-world';
+import hello from './hello';
+
+hello({
+  arguments: [],
+  cb: () => {
+    console.log('done');
+  }
+});
 
 function App() {
-  const { loading, error, data } = useWasm({
-    url: './test.wasm',
-  });
-
-  console.log(`loading ${loading}`);
-  console.log(`error ${error}`);
-
-  if (!loading && !error) {
-    const { instance } = data;
-    console.log(instance.exports.add(1, 2));
-  }
-
   return (
     <div className="App">
       <header className="App-header">
@@ -24,6 +19,7 @@ function App() {
         <p>
           Edit <code>src/App.js</code> and save to reload.
         </p>
+        <button onClick={() => wasm.greet('React')}>WASM greetings</button>
         <a
           className="App-link"
           href="https://reactjs.org"
