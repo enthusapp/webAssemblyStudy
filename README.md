@@ -6,6 +6,12 @@ https://github.com/mallamhando/study/blob/master/WebAssembly.md
 ## TODO
 * [ ] wasm 파일을 Rust 예제와 같이 번들화하여 public 하지 않게 만들기
 
+## Compile emscripten
+```bash
+emsdk$ source ./emsdk_env.sh
+emsdk$ emcc hello.c -s MODULARIZE=1 -s EXPORT_NAME=Hello -s ERROR_ON_UNDEFINED_SYMBOLS=0 -o hello.html
+```
+
 ## Reference
 * emscripten 예제 https://medium.com/@marvinirwin/webassembly-react-and-create-react-app-8b73346c9b65 wasm 파일 public 위치화하는 문제
 * Rust 기반 예제 https://github.com/pmrcunha/cra-wasm-test
